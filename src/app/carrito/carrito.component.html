@@ -1,0 +1,80 @@
+<div class="container">
+    <!-- acceso -->
+    <div [hidden]="usuarioLogueado" id="contenedor-acceso">
+        <div class="form-signin" id="acceso">
+            <img class="mb-4" src="assets/cart.png" alt="" width="72" height="72">
+            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+            <h1 class="h3 mb-3 font-weight-normal">Hola!</h1>
+            <small>Accede y compra lo que necesites.</small>
+            <input type="email" class="form-control" #correo placeholder="Ingrese el correo">
+            <button (click)="login()" class="btn btn-lg btn-block btn-primary">Ingresar</button>
+            <div id="mensaje_error">{{getMensajeError()}}</div>
+        </div>
+    </div>
+
+    <div id="tienda" [hidden]="!usuarioLogueado">
+
+        <!-- mensaje de bienvenida -->
+        <div class="col-md-12" id="mensaje-bienvenida">
+            <h1 class="h3 mb-3 font-weight-normal">
+                Bienvenido {{getCorreoLogueado()}}
+                <button (click)="logout()" class="btn btn-outline-danger btn-sm">Salir</button>
+            </h1>
+            <span>Revisa nuestros productos y agrégalos a tu carro de compras.</span>
+        </div>
+
+        <!-- lista de productos -->
+        <div class="col-xs-6" id="productos">
+            <h4 class="sub-header">Productos</h4>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th style="width:10%"></th>
+                            <th style="width:40%">Nombre</th>
+                            <th style="width:20%">Valor</th>
+                            <th style="width:30%"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let p of productos;">
+                            <td>
+                                <img src="{{p.img}}" width="50" />
+                            </td>
+                            <td>{{p.nombre}}</td>
+                            <td>${{p.valor | number}}</td>
+                            <td>
+                                <button [disabled]="!p.disponible" (click)="agregarProducto(p.id)" class="btn btn-primary">Agregar</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    
+        <!-- carrito de compras -->
+        <div class="col-xs-6" id="carrito">
+            <h4 class="sub-header">Carrito</h4>
+            <div class="alert alert-primary" role="alert" [hidden]="compras.length > 0">
+                No hay productos seleccionados.
+            </div>
+            <div class="table-responsive" [hidden]="compras.length == 0">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                        <th class="col-md-1">Nombre</th>
+                        <th class="col-md-2">Valor</th>
+                        <th class="col-md-3"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let c of compras;">
+                            <td class="col-md-1">{{c.nombre}}</td>
+                            <td class="col-md-2">${{c.valor | number}}</td>
+                            <td class="col-md-3"><button class="btn btn-danger" (click)="eliminarProducto(c.id)">Eliminar</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+</div>
