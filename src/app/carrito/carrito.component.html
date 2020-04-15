@@ -54,7 +54,9 @@
     
         <!-- carrito de compras -->
         <div class="col-xs-6" id="carrito">
-            <h4 class="sub-header">Carrito</h4>
+            <h4 class="sub-header">
+                Carrito <small [hidden]="compras.length == 0">| {{ compras.length }} productos seleccionados</small>
+            </h4>
             <div class="alert alert-primary" role="alert" [hidden]="compras.length > 0">
                 No hay productos seleccionados.
             </div>
@@ -62,16 +64,16 @@
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                        <th class="col-md-1">Nombre</th>
-                        <th class="col-md-2">Valor</th>
-                        <th class="col-md-3"></th>
+                        <th style="width:50%">Nombre</th>
+                        <th style="width:20%">Valor</th>
+                        <th style="width:30%"></th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr *ngFor="let c of compras;">
-                            <td class="col-md-1">{{c.nombre}}</td>
-                            <td class="col-md-2">${{c.valor | number}}</td>
-                            <td class="col-md-3"><button class="btn btn-danger" (click)="eliminarProducto(c.id)">Eliminar</button></td>
+                            <td>{{c.nombre}}</td>
+                            <td>${{c.valor | number}}</td>
+                            <td><button class="btn btn-danger" (click)="eliminarProducto(c.id)">Eliminar</button></td>
                         </tr>
                     </tbody>
                 </table>
