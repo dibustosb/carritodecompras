@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { ProductosService } from '../productos.service';
 
 @Component({
 	selector: 'app-carrito',
@@ -23,15 +24,6 @@ export class CarritoComponent implements OnInit {
 	//aquí se guadará el correo una vez que ingrese
 	correo:string;
 
-	//se define lista de productos disponibles para comprar
-	productos = [
-		{id:1, nombre: 'Tablet Guahuei', valor: 35000, disponible: true, img: 'assets/productos/tablet.jpg'},
-		{id:2, nombre: 'Smartphone Chiaomi', valor: 75000, disponible: true, img: 'assets/productos/smartphone.jpg'},
-		{id:3, nombre: 'Led Sansun', valor: 250000, disponible: true, img: 'assets/productos/led.jpg'},
-		{id:4, nombre: 'Audifonos Zony', valor: 12500, disponible: true, img: 'assets/productos/audifonos.jpg'},
-		{id:5, nombre: 'Notebook I-mak Pear', valor: 450000, disponible: true, img: 'assets/productos/notebook.jpg'}
-	];
-
 	//arreglo donde irán las compras
 	compras = [];
 
@@ -40,7 +32,11 @@ export class CarritoComponent implements OnInit {
 	mensaje_error:string;
 	total:number = 0;
 
-	constructor(){ }
+	productos: any = [];
+	constructor(){ 
+		let productoss = new ProductosService();
+		this.productos = productoss.getProductos();
+	}
 	ngOnInit(): void {}
 
 	//login
