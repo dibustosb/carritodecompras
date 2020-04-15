@@ -76,6 +76,12 @@
                             <td><button class="btn btn-danger" (click)="eliminarProducto(c.id)">Eliminar</button></td>
                         </tr>
                     </tbody>
+                    <tfoot>
+                        <tr>
+                            <td>Total:</td>
+                            <td colspan="2">${{total | number}}</td>
+                        </tr>
+                    </tfoot>
                 </table>
             </div>
         </div>

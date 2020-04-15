@@ -38,7 +38,7 @@ export class CarritoComponent implements OnInit {
 	producto = [];
 	indice:number;
 	mensaje_error:string;
-	total:number;
+	total:number = 0;
 
 	constructor(){ }
 	ngOnInit(): void {}
