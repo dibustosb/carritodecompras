@@ -69,8 +69,11 @@ export class CarritoComponent implements OnInit {
 			nombre: this.productos[this.indice].nombre,
 			valor: this.productos[this.indice].valor
 		});
+		
+		//suma el valor del producto seleccionado al total de la compra
 		this.total += this.productos[this.indice].valor;
-		console.log(this.total);
+		
+		//cambia la disponibilidad del producto a false
 		this.productos[this.indice].disponible = false;
 	}
 
@@ -91,6 +94,9 @@ export class CarritoComponent implements OnInit {
 
 		//define en el array de productos que el elemento está disponbile (le cambia el estado)
 		this.productos[indiceProductos].disponible = true;
+
+		//resta el valor del producto al total
+		this.total -= this.productos[indiceProductos].valor;
 	}
 
 	//método para salir del carrito de compras
