@@ -13,7 +13,8 @@ export class CarritoComponent implements OnInit {
 	correos_validos = [
 		'diego.bustos@kibernum.com',
 		'diego.bustos@gmail.com',
-		'diego@email.com'
+		'diego@email.com',
+		'sergio.sepulveda@dev-solutions.cl'
 	];
 	correo:string;
 	productos = [
